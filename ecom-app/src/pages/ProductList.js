@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Filter } from "../filters/Filters";
-import { ProductCard } from "../components/ProductCard";
+import ProductCard  from "../components/ProductCard";
 import { Search } from "../components/Search";
 import "./ProductList.css"; // Import the CSS file
 

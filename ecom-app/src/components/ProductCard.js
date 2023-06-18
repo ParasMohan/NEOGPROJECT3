@@ -5,7 +5,7 @@ import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
 import { addItemToCart, addItemToWishlist } from "../Alerts/Alerts";
 
-export function ProductCard(product) {
+export default function ProductCard(product) {
   const {
     _id,
     thumbnail,

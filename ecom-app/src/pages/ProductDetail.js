@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { products } from "../backend/db/products";
-import { ProductCard } from "../components/ProductCard";
+import ProductCard from "../components/ProductCard";
 
 export default function ProductDetail() {
   const { productId } = useParams();
