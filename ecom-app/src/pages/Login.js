@@ -1,43 +1,49 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext} from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { signIn, isLoggedIn} = useContext(AuthContext);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const navigate = useNavigate();
+
+  console.log(isLoggedIn, "from sign in");
+  if (isLoggedIn === true) {
+    navigate("/");
+  }
+  //   if (loggedIn !== false) {
+  //     navigate("/signin");
+  //   }
+
+  const handleSignIn = async (event) => {
+    event.preventDefault();
+    const username = event.target[0].value;
+    const password = event.target[1].value;
+    try {
+      await signIn(username, password);
+    } catch (error) {
+      console.log("cant long in", error);
+    }
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here (e.g., send login request)
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Reset the form
-    setEmail('');
-    setPassword('');
-  };
+  
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={handleEmailChange} required />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" value={password} onChange={handlePasswordChange} required />
-      </div>
-      <button type="submit">Login</button>
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
-    </form>
+    <div>
+      <form onSubmit={handleSignIn}>
+        <h1>Sign In</h1>
+        <label>
+          Email
+          <input type="text" required></input>
+        </label>
+        <label>
+          Password
+          <input type="password" required></input>
+        </label>
+        <button type="submit">Sign In</button>
+      </form>
+      
+    </div>
   );
 };
 
