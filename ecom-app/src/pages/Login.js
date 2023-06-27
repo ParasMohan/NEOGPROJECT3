@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useEffect} from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,25 +8,26 @@ const Login = () => {
   const navigate = useNavigate();
 
   console.log(isLoggedIn, "from sign in");
-  if (isLoggedIn === true) {
-    navigate("/");
-  }
+  
   //   if (loggedIn !== false) {
   //     navigate("/signin");
   //   }
 
   const handleSignIn = async (event) => {
     event.preventDefault();
-    const username = event.target[0].value;
+    const email = event.target[0].value;
     const password = event.target[1].value;
     try {
-      await signIn(username, password);
+      await signIn(email, password);
     } catch (error) {
       console.log("cant long in", error);
     }
   };
 
   
+useEffect(()=>{if (isLoggedIn === true) {
+    navigate("/");
+  }},[isLoggedIn])
 
   return (
     <div>

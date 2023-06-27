@@ -9,9 +9,9 @@ export  function AuthProvider ({ children }) {
 
   console.log(isLoggedIn);
 
-  const signIn = async (username, password) => {
+  const signIn = async (email, password) => {
     try {
-      const res = await axios.post("api/auth/login", { username, password });
+      const res = await axios.post("api/auth/login", { email, password });
       const { token, foundUser } = res.data;
       localStorage.setItem("token", token);
       setUser(foundUser);
