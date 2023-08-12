@@ -6,18 +6,19 @@ import App from "./App";
 import { CartContext, CartProvider } from "./context/CartContext";
 import { WishlistContext, WishlistProvider } from "./context/WishlistContext";
 import { AuthContext, AuthProvider } from "./context/AuthContext";
-import UserContextProvider, {UserContext} from "./context/UserContext";
+import UserContextProvider, { UserContext } from "./context/UserContext";
 import { makeServer } from "./server";
+import { DataProvider } from "./context/DataContext"; // Import DataProvider
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
-export { CartContext }; // A new syntax. Noticed?
+export { CartContext };
 export { WishlistContext };
 export { AuthContext };
-export {UserContext}
+export { UserContext };
 
-makeServer()
+makeServer();
 root.render(
   <StrictMode>
     <Router>
@@ -25,7 +26,9 @@ root.render(
         <CartProvider>
           <AuthProvider>
             <UserContextProvider>
-            <App />
+              <DataProvider> {/* Include the DataProvider */}
+                <App />
+              </DataProvider>
             </UserContextProvider>
           </AuthProvider>
         </CartProvider>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { categories } from "../backend/db/categories";
 import { products } from "../backend/db/products";
+import "./Category.css"; // Import the CSS file for styling
 
 export default function Category() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -15,42 +16,35 @@ export default function Category() {
     : products;
 
   return (
-    <div>
+    <div className="category-container">
       <h1>Category</h1>
-      <div>
+      <div className="category-links">
         {categories.map((category) => (
           <Link
             key={category._id}
             to={`/category/${category.name}`}
-            style={{
-              border: "1px solid gray",
-              margin: "0.5rem",
-              padding: "0.5rem",
-              display: "block",
-              textDecoration: "none",
-              color: "inherit"
-            }}
+            className="category-link"
             onClick={() => handleCategoryClick(category)}
           >
             <img
               src={category.image}
               alt={category.name}
-              style={{ width: "100%" }}
+              className="category-image"
             />
-            <h3>{category.name}</h3>
-            <p>{category.description}</p>
+            <h3 className="category-title">{category.name}</h3>
+            <p className="category-description">{category.description}</p>
           </Link>
         ))}
       </div>
       {selectedCategory && (
-        <div>
+        <div className="product-list">
           <h2>{selectedCategory.name} Products</h2>
           <div>
             {filteredProducts.map((product) => (
-              <div key={product._id}>
-                <h3>{product.title}</h3>
-                <p>{product.description}</p>
-                <p>Price: ${product.price}</p>
+              <div key={product._id} className="product-item">
+                <h3 className="product-title">{product.title}</h3>
+                <p className="product-description">{product.description}</p>
+                <p className="product-price">Price: ${product.price}</p>
                 <hr />
               </div>
             ))}

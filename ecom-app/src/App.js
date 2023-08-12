@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup"
 import MockAPI from "./components/Mockman";
 import { RequiresAuth } from "./components/RequiresAuth";
+import UserProfile from "./pages/UserProfile";
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path='/mockman' element={<MockAPI />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/userprofile" element={<UserProfile />} />
         <Route
           path="/wishlist"
           element={

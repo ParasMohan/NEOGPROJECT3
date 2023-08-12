@@ -1,0 +1,66 @@
+/* Category.css */
+
+.category-container {
+    padding: 1rem;
+  }
+  
+  .category-links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .category-link {
+    flex: 1;
+    max-width: 300px;
+    margin: 0.5rem;
+    padding: 1rem;
+    border: 1px solid gray;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .category-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-image {
+    width: 100%;
+  }
+  
+  .category-title {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+  }
+  
+  .category-description {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .product-list {
+    margin-top: 2rem;
+  }
+  
+  .product-item {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .product-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-description {
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    color: #007bff;
+  }
+  

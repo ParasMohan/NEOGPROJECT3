@@ -1,9 +1,9 @@
-
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
 import { addItemToCart, addItemToWishlist } from "../Alerts/Alerts";
+import "./ProductCard.css"; // Import your CSS file for styling
 
 export default function ProductCard(product) {
   const {
@@ -30,27 +30,28 @@ export default function ProductCard(product) {
   };
 
   return (
-    <div
-      key={_id}
-      style={{
-        border: "1px solid gray",
-        margin: "0.5rem",
-        padding: "0.5rem"
-      }}
-    >
-      <img src={thumbnail} alt={title} style={{ width: "100%" }} />
-      <h2>
-        {title} <br />
-        <small>Price: $ {price}</small>
-      </h2>
-      <h4>Rating: {rating}</h4>
-
-      <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
-      <button onClick={() => handleAddToWishlist(product)}>
-        Add to Wishlist
-      </button>
-      {!noDescription && <Link to={`/product/${_id}`}> View Details </Link>}
+    <div className="product-card">
+      <div className="product-image-container">
+        <img className="product-thumbnail" src={thumbnail} alt={title} />
+      </div>
+      <div className="product-details">
+        <h2 className="product-title">{title}</h2>
+        <div className="product-price-rating">
+          <span className="product-price">${price}</span>
+          <span className="product-rating">Rating: {rating}</span>
+        </div>
+        {/* <p className="product-description">{description}</p> */}
+        <div className="product-buttons">
+          <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>
+            Add to Cart
+          </button>
+          <button className="add-to-wishlist-btn" onClick={() => handleAddToWishlist(product)}>
+            Add to Wishlist
+          </button>
+        </div>
+        {!noDescription && <Link to={`/product/${_id}`}> View Details </Link>}
       {noDescription && <p> {description} </p>}
+      </div>
     </div>
   );
 }

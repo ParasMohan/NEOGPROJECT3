@@ -109,6 +109,30 @@ export function Filter({
           <span className="blue">{rating}</span>
         </label>
       </div>
+      <div>
+        <label>
+          Sort By Category
+          <input
+            type="checkbox"
+            className="cursor-pointer"
+            name="smartphones-box"
+           
+            onChange={() => handleSortOrderChange("asc")}
+            checked={sortOrder === "asc"}
+          />
+         smartphones
+          <input
+           type="checkbox"
+            className="cursor-pointer"
+            name="laptop-box"
+        
+            onChange={() => handleSortOrderChange("desc")}
+            checked={sortOrder === "desc"}
+          />
+          laptop
+        </label>
+      
+      </div>
       <button onClick={handleResetFilters}>Reset Filters</button>
     </div>
   );

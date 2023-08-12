@@ -94,6 +94,9 @@ export default function ProductList({ products }) {
     (_, index) => index + 1
   );
 
+
+
+
   return (
     <div>
       <Search

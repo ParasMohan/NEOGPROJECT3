@@ -1,29 +1,31 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { CartContext } from "..";
-import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../index";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "..";
 
 export default function Header() {
-  const { cart } = useContext(CartContext);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const handleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
-    navigate(location?.state?.from?.pathname);
+  const { isLoggedIn, signOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    signOut();
   };
+
   return (
     <div>
-      <h1>meKart</h1>
-      <h3> items in cart: {cart.length} </h3>
+      <h1>TechKart</h1>
       <nav>
-        <NavLink to="/"> home </NavLink> ||
-        <NavLink to="/category"> category </NavLink> ||
-        <NavLink to="/cart"> cart </NavLink> ||
-        <NavLink to="/checkout"> checkout </NavLink> ||
-        <NavLink to="/wishlist"> wishlist </NavLink>
-        <button onClick={handleLogin}>{isLoggedIn ? "Logout" : "Login"}</button>
+        <Link to="/">Home</Link> ||
+        <Link to="/category">Category</Link> ||
+        <Link to="/cart">Cart</Link> ||
+        <Link to="/checkout">Checkout</Link> ||
+        <Link to="/wishlist">Wishlist</Link> ||
+        {isLoggedIn ? (
+          <React.Fragment>
+            <Link to="/userprofile">Profile</Link>
+            <button onClick={handleLogout}>Logout</button>
+          </React.Fragment>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
       </nav>
     </div>
   );
