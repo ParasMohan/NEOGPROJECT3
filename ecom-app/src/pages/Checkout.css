@@ -1,0 +1,60 @@
+/* Styling for the checkout container */
+.checkout-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* Styling for the address selection section */
+  .address-section {
+    margin-bottom: 2rem;
+  }
+  
+  /* Styling for the address card */
+  .address-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .address-card:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .address-card input[type="radio"] {
+    margin-right: 1rem;
+  }
+  
+  /* Styling for the order summary section */
+  .order-summary {
+    border-top: 1px solid #ccc;
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  
+  /* Styling for the order summary items */
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  /* Styling for the place order button */
+  .place-order-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .place-order-button:hover {
+    background-color: #0056b3;
+  }
+  

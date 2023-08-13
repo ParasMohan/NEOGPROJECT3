@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { WishlistContext } from "../context/WishlistContext";
-import { addItemToCart, addItemToWishlist } from "../Alerts/Alerts";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./ProductCard.css"; // Import your CSS file for styling
 
 export default function ProductCard(product) {
@@ -19,14 +20,22 @@ export default function ProductCard(product) {
   const { addToCart } = useContext(CartContext);
   const { addToWishlist } = useContext(WishlistContext);
 
+  const [cartButton, setCartButton] = useState("Add to Cart");
+  const navigate = useNavigate();
+
   const handleAddToCart = (product) => {
     addToCart({ ...product, quantity: 1 });
-    addItemToCart(product); // Show the alert
+    setCartButton("Go to Cart");
+    toast.success(`item added to cart!`);
   };
 
   const handleAddToWishlist = (product) => {
     addToWishlist({ ...product, quantity: 1 });
-    addItemToWishlist(product); // Show the alert
+    toast.info(`item added to wishlist!`);
+  };
+
+  const handleGoToCart = () => {
+    navigate("/cart");
   };
 
   return (
@@ -40,17 +49,16 @@ export default function ProductCard(product) {
           <span className="product-price">${price}</span>
           <span className="product-rating">Rating: {rating}</span>
         </div>
-        {/* <p className="product-description">{description}</p> */}
         <div className="product-buttons">
-          <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>
-            Add to Cart
+          <button className="add-to-cart-btn" onClick={() => cartButton === "Add to Cart" ? handleAddToCart(product) : handleGoToCart()}>
+            {cartButton}
           </button>
           <button className="add-to-wishlist-btn" onClick={() => handleAddToWishlist(product)}>
             Add to Wishlist
           </button>
         </div>
         {!noDescription && <Link to={`/product/${_id}`}> View Details </Link>}
-      {noDescription && <p> {description} </p>}
+        {noDescription && <p> {description} </p>}
       </div>
     </div>
   );

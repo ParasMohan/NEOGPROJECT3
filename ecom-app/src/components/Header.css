@@ -1,0 +1,30 @@
+.header {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .logo {
+    font-size: 2rem;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    transition: border 0.3s;
+  }
+  
+  .nav-link.active {
+    border: 2px solid #f39c12;
+    border-radius: 5px;
+  }
+  

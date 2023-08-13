@@ -1,0 +1,37 @@
+.category-head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .category-heading {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ff5722; /* Highlight color for the heading */
+  }
+  
+  .category-element {
+    display: inline-block;
+    margin: 0px 40px; /* Reduced margin for a more compact look */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px; /* Adjusted font size for the category links */
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+    padding-bottom: 6px; /* Add padding at the bottom for a separation effect */
+    border-bottom: 2px solid transparent;
+  }
+  
+  .category-element:hover {
+    color: #ff5722;
+    border-bottom-color: #ff5722;
+  }
+  
+
+img{
+    width: 100%;
+}
+.main_img{
+    cursor: pointer;
+}
+

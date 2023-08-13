@@ -1,22 +1,50 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import axios from "axios";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({
+    addresses: [], // Initialize addresses as an empty array
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedUserData = localStorage.getItem("user");
     if (token && storedUserData) {
-      const user = JSON.parse(storedUserData); // Parse stored user data
+      const user = JSON.parse(storedUserData);
+      // Initialize addresses if not present
+      if (!user.addresses) {
+        user.addresses = [];
+      }
       setUserData(user);
     }
   }, []);
 
+  const addAddress = (newAddress) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      addresses: [...prevUserData.addresses, newAddress],
+    }));
+  };
+
+  const editAddress = (index, updatedAddress) => {
+    setUserData((prevUserData) => {
+      const updatedAddresses = [...prevUserData.addresses];
+      updatedAddresses[index] = updatedAddress;
+      return { ...prevUserData, addresses: updatedAddresses };
+    });
+  };
+
+  const deleteAddress = (index) => {
+    setUserData((prevUserData) => {
+      const updatedAddresses = [...prevUserData.addresses];
+      updatedAddresses.splice(index, 1);
+      return { ...prevUserData, addresses: updatedAddresses };
+    });
+  };
+
   return (
-    <DataContext.Provider value={{ userData }}>
+    <DataContext.Provider value={{ userData, addAddress, editAddress, deleteAddress }}>
       {children}
     </DataContext.Provider>
   );

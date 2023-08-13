@@ -9,20 +9,25 @@ import Header from "./components/Header";
 import Category from "./pages/Category";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDetail from "./pages/ProductDetail";
-import Checkout from "./pages/Checkout";
-import WishList from "./pages/WishList";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup"
 import MockAPI from "./components/Mockman";
 import { RequiresAuth } from "./components/RequiresAuth";
 import UserProfile from "./pages/UserProfile";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation"; // Add this import
+import WishList from "./pages/WishList";
+import Home from "./pages/Home";
 
 export default function App() {
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<ProductList products={products} />} />
+      <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList products={products} />} />
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/category"
@@ -47,7 +52,20 @@ export default function App() {
             </RequiresAuth>
           }
         />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
       </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

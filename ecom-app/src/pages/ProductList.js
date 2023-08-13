@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Filter } from "../filters/Filters";
-import ProductCard  from "../components/ProductCard";
+import ProductCard from "../components/ProductCard";
 import { Search } from "../components/Search";
+import { Filter } from "../filters/Filters"; // Import the Filter component
 import "./ProductList.css"; // Import the CSS file
 
 export default function ProductList({ products }) {
@@ -9,11 +9,15 @@ export default function ProductList({ products }) {
   const [filterState, setFilterState] = useState({
     maxPrice: 2000,
     rating: 0,
-    sortOrder: ""
+    sortOrder: "",
+    category: ""
   });
   const [searchKeyword, setSearchKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
+
+  // Extract unique categories from products
+  const allCategories = Array.from(new Set(products.map(product => product.category)));
 
   const handleSortOrder = (order) => {
     setFilterState((prevState) => ({
@@ -36,6 +40,13 @@ export default function ProductList({ products }) {
     }));
   };
 
+  const handleCategoryFilter = (category) => {
+    setFilterState((prevState) => ({
+      ...prevState,
+      category: category
+    }));
+  };
+
   useEffect(() => {
     const filterByPrice = (product) => {
       return product.price <= filterState.maxPrice;
@@ -43,6 +54,12 @@ export default function ProductList({ products }) {
 
     const filterByRating = (product) => {
       return product.rating >= filterState.rating;
+    };
+
+    const filterByCategory = (product) => {
+      return (
+        filterState.category === "" || product.category === filterState.category
+      );
     };
 
     const sortProducts = (a, b) => {
@@ -57,6 +74,7 @@ export default function ProductList({ products }) {
     const filteredProducts = products
       .filter(filterByPrice)
       .filter(filterByRating)
+      .filter(filterByCategory)
       .filter((product) => {
         const title = product.title.toLowerCase();
         return (
@@ -94,25 +112,37 @@ export default function ProductList({ products }) {
     (_, index) => index + 1
   );
 
-
-
-
   return (
     <div>
-      <Search
-        searchKeyword={searchKeyword}
-        setSearchKeyword={setSearchKeyword}
-      />
+      <Search searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} />
 
-      <div className="FilterContainer">
-        <Filter
-          handleSortOrder={handleSortOrder}
-          handlePriceFilter={handlePriceFilter}
-          handleRatingFilter={handleRatingFilter}
-        />
+      <div className="ProductList">
+        <div className="FilterContainer">
+          <div className="CategoryButtons">
+            {/* Dynamic Category Filter Buttons */}
+            {allCategories.map(category => (
+              <button
+                key={category}
+                onClick={() => handleCategoryFilter(category)}
+                className={filterState.category === category ? "active" : ""}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          {/* End of Dynamic Category Filter Buttons */}
+          
+          {/* Include the Filter component */}
+          <Filter
+            handleSortOrder={handleSortOrder}
+            handlePriceFilter={handlePriceFilter}
+            handleRatingFilter={handleRatingFilter}
+            handleCategoryFilter={handleCategoryFilter} // Pass the category filter function
+          />
+        </div>
+
+        <div className="ProductGridContainer">{renderProducts}</div>
       </div>
-
-      <div className="ProductGridContainer">{renderProducts}</div>
 
       {totalPages > 1 && (
         <div className="Pagination">

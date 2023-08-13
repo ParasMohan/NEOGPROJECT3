@@ -1,15 +1,16 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(false);
   const [user, setUser] = useState({});
   const navigate = useNavigate()
-  
+  const location = useLocation()
   const signIn = async (email, password) => {
     try {
       const res = await axios.post("api/auth/login", { email, password });
@@ -17,7 +18,12 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", encodedToken);
       localStorage.setItem("user", JSON.stringify(foundUser)); // Store user data as a string
       setUser(foundUser);
-      setIsLoggedIn(true);
+      setToken(encodedToken);
+
+      if(location?.state?.from?.pathname)
+      navigate(location?.state?.from?.pathname);
+        else navigate("/", { replace: true });
+
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +36,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", encodedToken);
       localStorage.setItem("user", JSON.stringify(createdUser)); // Store user data as a string
       setUser(createdUser);
-      setIsLoggedIn(true);
+      setToken(encodedToken);
     } catch (error) {
       console.error(error);
     }
@@ -40,13 +46,13 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser({});
-    setIsLoggedIn(false);
+    setToken(false);
     navigate('/')
   };
 
   return (
     <AuthContext.Provider
-      value={{ signIn, signUp, signOut, isLoggedIn, user }}
+      value={{ signIn, signUp, signOut, token,setToken, user }}
     >
       {children}
     </AuthContext.Provider>

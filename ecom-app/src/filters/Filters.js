@@ -3,7 +3,8 @@ import React, { useReducer } from "react";
 const initialState = {
   maxPrice: 2000,
   rating: 0,
-  sortOrder: ""
+  sortOrder: "",
+  category: "" // Add category property
 };
 
 function filterReducer(state, action) {
@@ -14,6 +15,8 @@ function filterReducer(state, action) {
       return { ...state, rating: action.payload };
     case "SET_SORT_ORDER":
       return { ...state, sortOrder: action.payload };
+    case "SET_CATEGORY": // Add case for category
+      return { ...state, category: action.payload };
     case "RESET_FILTERS":
       return initialState;
     default:
@@ -24,7 +27,8 @@ function filterReducer(state, action) {
 export function Filter({
   handleSortOrder,
   handlePriceFilter,
-  handleRatingFilter
+  handleRatingFilter,
+  handleCategoryFilter
 }) {
   const [filterState, dispatch] = useReducer(filterReducer, initialState);
 
@@ -45,14 +49,20 @@ export function Filter({
     handleSortOrder(order);
   };
 
+  const handleCategoryChange = (category) => {
+    dispatch({ type: "SET_CATEGORY", payload: category });
+    handleCategoryFilter(category);
+  };
+
   const handleResetFilters = () => {
     dispatch({ type: "RESET_FILTERS" });
     handleSortOrder("");
     handlePriceFilter(2000);
     handleRatingFilter(0);
+    handleCategoryFilter(""); // Reset category filter as well
   };
 
-  const { maxPrice, rating, sortOrder } = filterState;
+  const { maxPrice, rating, sortOrder, category } = filterState;
 
   return (
     <div>
@@ -109,30 +119,23 @@ export function Filter({
           <span className="blue">{rating}</span>
         </label>
       </div>
+
       <div>
         <label>
-          Sort By Category
-          <input
-            type="checkbox"
-            className="cursor-pointer"
-            name="smartphones-box"
-           
-            onChange={() => handleSortOrderChange("asc")}
-            checked={sortOrder === "asc"}
-          />
-         smartphones
-          <input
-           type="checkbox"
-            className="cursor-pointer"
-            name="laptop-box"
-        
-            onChange={() => handleSortOrderChange("desc")}
-            checked={sortOrder === "desc"}
-          />
-          laptop
+          Category:
+          <select
+            name="category"
+            value={category}
+            onChange={(e) => handleCategoryChange(e.target.value)}
+          >
+            <option value="">All Categories</option>
+            <option value="Smartphones">Smartphones</option>
+            <option value="Laptops">Laptops</option>
+            {/* Add more categories as needed */}
+          </select>
         </label>
-      
       </div>
+
       <button onClick={handleResetFilters}>Reset Filters</button>
     </div>
   );
