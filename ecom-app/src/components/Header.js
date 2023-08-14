@@ -13,7 +13,7 @@ export default function Header() {
   return (
 
     <div className="header">
-      <h1 style = {{ color :" white" }}>TechKart</h1>
+      <h1 style = {{ color :" white" }}>Shopeekart</h1>
       <nav className="nav">
         <NavLink exact to="/" activeClassName="active" className="nav-link">
           Home
@@ -37,7 +37,7 @@ export default function Header() {
               Profile
             </NavLink>
 
-            
+
         {token ? (
           <React.Fragment>
            

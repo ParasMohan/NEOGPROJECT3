@@ -2,16 +2,19 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { DataContext } from "../context/DataContext";
 import "./Checkout.css"; // Import the CSS file
 
 export default function Checkout() {
   const { cart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
-  const [selectedAddress, setSelectedAddress] = useState(""); // You can remove the selectedAddress state if not needed
-  // const { userData, editAddress } = useContext(DataContext); // No need for DataContext in this case
+  const [selectedAddress, setSelectedAddress] = useState("");
 
   const handlePlaceOrder = () => {
+    if (!selectedAddress) {
+      toast.warning("Please choose an address to checkout.");
+      return;
+    }
+
     // Perform the order placement logic here
     // You can clear the cart and perform any other necessary actions
     clearCart();
@@ -27,7 +30,9 @@ export default function Checkout() {
   return (
     <div className="checkout-container">
       <h2>Checkout</h2>
-      <p style={{ color: "red" }}>NOTE: Please choose a dummy address to place an order successfully.</p>
+      <p style={{ color: "red" }}>
+        NOTE: Please choose a dummy address to place an order successfully.
+      </p>
 
       <div className="address-section">
         <h3>Select Address</h3>
@@ -38,7 +43,7 @@ export default function Checkout() {
             id="address-1"
             name="address"
             value="address-1"
-            onChange={() => setSelectedAddress("address-1")} // If you still want to capture the selected address ID
+            onChange={() => setSelectedAddress("address-1")}
           />
           <label htmlFor="address-1">
             <h3>John Doe</h3>
@@ -52,7 +57,7 @@ export default function Checkout() {
             id="address-2"
             name="address"
             value="address-2"
-            onChange={() => setSelectedAddress("address-2")} // If you still want to capture the selected address ID
+            onChange={() => setSelectedAddress("address-2")}
           />
           <label htmlFor="address-2">
             <h3>Jane Smith</h3>
@@ -67,7 +72,9 @@ export default function Checkout() {
         {cart.map((item) => (
           <div key={item._id} className="order-item">
             <span>{item.title}</span>
-            <span>Total Quantity: {item.quantity} - Price: $ {item.price}</span>
+            <span>
+              Total Quantity: {item.quantity} - Price: $ {item.price}
+            </span>
           </div>
         ))}
         <div>Total: ${cartTotal}</div>

@@ -21,7 +21,7 @@ import OrderConfirmation from "./pages/OrderConfirmation"; // Add this import
 import WishList from "./pages/WishList";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
-import { CartContext } from "./context/CartContext";
+
 export default function App() {
   return (
     <div className="App">
