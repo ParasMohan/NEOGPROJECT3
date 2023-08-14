@@ -186,6 +186,8 @@ export const products = [
         "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
       ]
     },
+
+    
     {
       _id: uuid(),
       title: "perfume Oil",
@@ -344,7 +346,7 @@ export const products = [
       rating: 4.42,
       stock: 54,
       brand: "ROREC White Rice",
-      category: "skincare",
+      category: "Fashion",
       thumbnail: "https://i.dummyjson.com/data/products/19/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/19/1.jpg",
@@ -362,7 +364,7 @@ export const products = [
       rating: 4.06,
       stock: 140,
       brand: "Fair & Clear",
-      category: "skincare",
+      category: "Fashion",
       thumbnail: "https://i.dummyjson.com/data/products/20/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/20/1.jpg",
@@ -381,7 +383,7 @@ export const products = [
       rating: 4.44,
       stock: 133,
       brand: "Saaf & Khaas",
-      category: "groceries",
+      category: "Groceries",
       thumbnail: "https://i.dummyjson.com/data/products/21/thumbnail.png",
       images: [
         "https://i.dummyjson.com/data/products/21/1.png",
@@ -398,7 +400,7 @@ export const products = [
       rating: 4.57,
       stock: 146,
       brand: "Bake Parlor Big",
-      category: "groceries",
+      category: "Groceries",
       thumbnail: "https://i.dummyjson.com/data/products/22/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/22/1.jpg",
@@ -415,7 +417,7 @@ export const products = [
       rating: 4.85,
       stock: 26,
       brand: "Baking Food Items",
-      category: "groceries",
+      category: "Groceries",
       thumbnail: "https://i.dummyjson.com/data/products/23/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/23/1.jpg",
@@ -434,7 +436,7 @@ export const products = [
       rating: 4.94,
       stock: 113,
       brand: "fauji",
-      category: "groceries",
+      category: "Groceries",
       thumbnail: "https://i.dummyjson.com/data/products/24/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/24/1.jpg",
@@ -453,7 +455,7 @@ export const products = [
       rating: 4.87,
       stock: 47,
       brand: "Dry Rose",
-      category: "groceries",
+      category: "Groceries",
       thumbnail: "https://i.dummyjson.com/data/products/25/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/25/1.png",
@@ -472,7 +474,7 @@ export const products = [
       rating: 4.08,
       stock: 131,
       brand: "Boho Decor",
-      category: "home-decoration",
+      category: "Fashion",
       thumbnail: "https://i.dummyjson.com/data/products/26/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/26/1.jpg",
@@ -492,7 +494,7 @@ export const products = [
       rating: 4.41,
       stock: 17,
       brand: "Flying Wooden",
-      category: "home-decoration",
+      category: "Fashion",
       thumbnail: "https://i.dummyjson.com/data/products/27/thumbnail.webp",
       images: [
         "https://i.dummyjson.com/data/products/27/1.jpg",
@@ -511,7 +513,7 @@ export const products = [
       rating: 4.82,
       stock: 54,
       brand: "LED Lights",
-      category: "home-decoration",
+      category: "Fashion",
       thumbnail: "https://i.dummyjson.com/data/products/28/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/28/1.jpg",
@@ -529,7 +531,7 @@ export const products = [
       discountPercentage: 15.34,
       rating: 4.44,
       stock: 7,
-      brand: "luxury palace",
+      brand: "Fashion",
       category: "home-decoration",
       thumbnail: "https://i.dummyjson.com/data/products/29/thumbnail.webp",
       images: [
@@ -549,7 +551,7 @@ export const products = [
       rating: 4.92,
       stock: 54,
       brand: "Golden",
-      category: "home-decoration",
+      category: "Fashion",
       thumbnail: "https://i.dummyjson.com/data/products/30/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/30/1.jpg",

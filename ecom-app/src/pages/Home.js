@@ -13,7 +13,8 @@ const Home = () => {
         <h1 className='category-heading'>Shop By Categories</h1>
         <NavLink to="/category/Smartphones" className='category-element'>Smartphones</NavLink>
         <NavLink to="/category/Laptops" className='category-element'>Laptops</NavLink>
-        <NavLink to="/category/Accessories" className='category-element'>Accessories</NavLink>
+        <NavLink to="/category/Fashion" className='category-element'>Fashion</NavLink>
+        <NavLink to="/category/Groceries" className='category-element'>Groceries</NavLink>
       </div>
       <div className='main-img'>
         <img
