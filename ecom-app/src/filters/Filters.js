@@ -120,22 +120,6 @@ export function Filter({
         </label>
       </div>
 
-      <div>
-        <label>
-          Category:
-          <select
-            name="category"
-            value={category}
-            onChange={(e) => handleCategoryChange(e.target.value)}
-          >
-            <option value="">All Categories</option>
-            <option value="Smartphones">Smartphones</option>
-            <option value="Laptops">Laptops</option>
-            {/* Add more categories as needed */}
-          </select>
-        </label>
-      </div>
-
       <button onClick={handleResetFilters}>Reset Filters</button>
     </div>
   );

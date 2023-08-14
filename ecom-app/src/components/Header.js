@@ -11,33 +11,36 @@ export default function Header() {
   };
 
   return (
+
     <div className="header">
-      <h1 className="logo">TechKart</h1>
+      <h1 style = {{ color :" white" }}>TechKart</h1>
       <nav className="nav">
         <NavLink exact to="/" activeClassName="active" className="nav-link">
           Home
         </NavLink>
-        <NavLink to="/category" activeClassName="active" className="nav-link">
-          Category
+        <NavLink to="/products" activeClassName="active" className="nav-link">
+          Products
         </NavLink>
         <NavLink to="/cart" activeClassName="active" className="nav-link">
           Cart
         </NavLink>
-        <NavLink to="/checkout" activeClassName="active" className="nav-link">
-          Checkout
-        </NavLink>
+
         <NavLink to="/wishlist" activeClassName="active" className="nav-link">
           Wishlist
         </NavLink>
-        {token ? (
-          <React.Fragment>
-            <NavLink
+
+        <NavLink
               to="/userprofile"
               activeClassName="active"
               className="nav-link"
             >
               Profile
             </NavLink>
+
+            
+        {token ? (
+          <React.Fragment>
+           
             <button onClick={handleLogout} className="logout-btn">
               Logout
             </button>

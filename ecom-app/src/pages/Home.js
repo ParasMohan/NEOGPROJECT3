@@ -11,9 +11,9 @@ const Home = () => {
     <div className='home-container'>
       <div className='category-head'>
         <h1 className='category-heading'>Shop By Categories</h1>
-        <NavLink to="/category" className='category-element'>Smartphones</NavLink>
-        <NavLink to="/category" className='category-element'>Laptops</NavLink>
-        <NavLink to="/category" className='category-element'>Accessories</NavLink>
+        <NavLink to="/category/Smartphones" className='category-element'>Smartphones</NavLink>
+        <NavLink to="/category/Laptops" className='category-element'>Laptops</NavLink>
+        <NavLink to="/category/Accessories" className='category-element'>Accessories</NavLink>
       </div>
       <div className='main-img'>
         <img

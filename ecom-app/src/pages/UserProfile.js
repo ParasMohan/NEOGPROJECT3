@@ -3,15 +3,17 @@ import { useData } from "../context/DataContext";
 import { useContext } from "react";
 import { AuthContext } from "..";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import AddressList from "./AddressList";
+import "react-toastify/dist/ReactToastify.css";
+import "./UserProfile.css"; // Include the CSS file for styling
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
   const { userData, addAddress, editAddress, deleteAddress } = useData();
   const [addressFormVisible, setAddressFormVisible] = useState(false);
   const [addressIndexToEdit, setAddressIndexToEdit] = useState(null);
+  const [shownToasts, setShownToasts] = useState([]); // Keep track of shown toasts
   const navigate = useNavigate();
 
   const toggleAddressForm = () => {
@@ -19,25 +21,25 @@ const UserProfile = () => {
     setAddressIndexToEdit(null);
   };
 
-  const handleAddEditAddress = (address) => {
-    if (addressIndexToEdit !== null) {
-      editAddress(addressIndexToEdit, address);
-      toast.success("Address updated successfully!");
-    } else {
-      addAddress(address);
-      toast.success("Address added successfully!");
-    }
-    toggleAddressForm();
-  };
-
   const handleEditAddress = (index) => {
     setAddressFormVisible(true);
     setAddressIndexToEdit(index);
   };
 
+  const handleAddEditAddress = (address) => {
+    if (addressIndexToEdit !== null) {
+      editAddress(addressIndexToEdit, address);
+      showToast("Address updated successfully!");
+    } else {
+      addAddress(address);
+      showToast("Address added successfully!");
+    }
+    toggleAddressForm();
+  };
+
   const handleDeleteAddress = (index) => {
     deleteAddress(index);
-    toast.success("Address deleted successfully!");
+    showToast("Address deleted successfully!");
   };
 
   const setPrimaryAddress = (selectedAddress) => {
@@ -47,7 +49,14 @@ const UserProfile = () => {
     };
 
     localStorage.setItem("user", JSON.stringify(updatedUserData));
-    toast.success("Primary address changed successfully!");
+    showToast("Primary address changed successfully!");
+  };
+
+  const showToast = (message) => {
+    if (!shownToasts.includes(message)) {
+     toast.success(message);
+      setShownToasts([...shownToasts, message]);
+    }
   };
 
   const AddressForm = ({ address, onSubmit }) => {
@@ -63,11 +72,10 @@ const UserProfile = () => {
       setState("");
     };
 
-
     return (
-      <form onSubmit={handleSubmit}>
+      <form className="address-form" onSubmit={handleSubmit}>
         <label>
-          Street:
+          Name:
           <input
             type="text"
             value={street}
@@ -99,36 +107,47 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
-      <h1>User Profile</h1>
+    <div className="container">
+      {/* <h1 className="heading">User Profile</h1> */}
       {user ? (
         <div>
-          <p>Name: {user.firstName} {user.lastName}</p>
-          <p>Email: {user.email}</p>
+          <p className="user-info">
+            Name: {user.firstName} {user.lastName}
+          </p>
+          <p className="user-info">Email: {user.email}</p>
 
-          <h2>Addresses</h2>
-          <button onClick={toggleAddressForm}>
+          <h2 className="section-heading">Addresses</h2>
+          <button
+            className="add-address-btn"
+            onClick={toggleAddressForm}
+          >
             {addressFormVisible ? "Close Address Form" : "Add Address"}
           </button>
           {addressFormVisible && (
             <AddressForm
-              address={addressIndexToEdit !== null ? userData.addresses[addressIndexToEdit] : null}
+              address={
+                addressIndexToEdit !== null
+                  ? userData.addresses[addressIndexToEdit]
+                  : null
+              }
               onSubmit={handleAddEditAddress}
             />
           )}
         </div>
       ) : (
-        <p>Loading user data...</p>
+        <p className="loading-message">Loading user data...</p>
       )}
-       <AddressList
+      <AddressList
         addresses={userData.addresses}
         onEdit={handleEditAddress}
         onDelete={handleDeleteAddress}
         onSelectAddress={(selectedAddress) => {
           setPrimaryAddress(selectedAddress);
         }}
+        editButtonClass="edit-address-btn"
+        deleteButtonClass="delete-address-btn"
       />
-      <ToastContainer />
+     
     </div>
   );
 };

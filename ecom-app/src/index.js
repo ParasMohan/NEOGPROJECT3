@@ -8,7 +8,8 @@ import { WishlistContext, WishlistProvider } from "./context/WishlistContext";
 import { AuthContext, AuthProvider } from "./context/AuthContext";
 import UserContextProvider, { UserContext } from "./context/UserContext";
 import { makeServer } from "./server";
-import { DataProvider } from "./context/DataContext"; // Import DataProvider
+import { DataProvider } from "./context/DataContext";
+import { FooterProvider } from "./context/FooterContext"; // Import the FooterProvider
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
@@ -26,8 +27,10 @@ root.render(
         <CartProvider>
           <AuthProvider>
             <UserContextProvider>
-              <DataProvider> {/* Include the DataProvider */}
-                <App />
+              <DataProvider>
+                <FooterProvider> 
+                  <App />
+                </FooterProvider>
               </DataProvider>
             </UserContextProvider>
           </AuthProvider>

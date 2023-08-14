@@ -6,25 +6,25 @@ import { v4 as uuid } from "uuid";
  * */
 
 export const products = [
-    {
-      _id: uuid(),
-      title: "iPhone 9",
-      description: "An apple mobile which is nothing like apple",
-      price: 549,
-      discountPercentage: 12.96,
-      rating: 4.69,
-      stock: 94,
-      brand: "Apple",
-      category: "Smartphones",
-      thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-      images: [
-        "https://i.dummyjson.com/data/products/1/1.jpg",
-        "https://i.dummyjson.com/data/products/1/2.jpg",
-        "https://i.dummyjson.com/data/products/1/3.jpg",
-        "https://i.dummyjson.com/data/products/1/4.jpg",
-        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
-      ]
-    },
+  {
+    "_id": "uuid()",
+    "title": "iPhone 9",
+    "description": "Model: iPhone 9\nDisplay: Super Retina OLED, 6.1 inches, 2340 x 1080 pixels\nProcessor: A14 Bionic chipset, Hexa-core CPU, Apple-designed GPU\nMemory: 4 GB RAM, Storage options: 64 GB / 128 GB / 256 GB\nCamera: Main camera - 12 MP, Dual Pixel PDAF, OIS | Front camera - 8 MP, FaceTime HD, Retina Flash\nBattery: 3000 mAh, Fast charging supported, Wireless charging supported\nOperating System: iOS 15\nConnectivity: 5G network, Wi-Fi 802.11ax, Bluetooth 5.1, NFC supported\nFeatures: Face ID, Animoji, Memoji\nDimensions: 150.9 mm x 75.7 mm x 8.3 mm, Weight: 170 grams\nColors: Available in Space Gray, Silver, Gold",
+    "price": 549,
+    "discountPercentage": 12.96,
+    "rating": 4.69,
+    "stock": 94,
+    "brand": "Apple",
+    "category": "Smartphones",
+    "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    "images": [
+      "https://i.dummyjson.com/data/products/1/1.jpg",
+      "https://i.dummyjson.com/data/products/1/2.jpg",
+      "https://i.dummyjson.com/data/products/1/3.jpg",
+      "https://i.dummyjson.com/data/products/1/4.jpg",
+      "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+    ]
+  },
     {
       _id: uuid(),
       title: "iPhone X",

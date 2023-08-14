@@ -1,10 +1,10 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [userData, setUserData] = useState({
-    addresses: [], // Initialize addresses as an empty array
+    addresses: [],
   });
 
   useEffect(() => {
@@ -34,7 +34,6 @@ export const DataProvider = ({ children }) => {
       return { ...prevUserData, addresses: updatedAddresses };
     });
   };
-
   const deleteAddress = (index) => {
     setUserData((prevUserData) => {
       const updatedAddresses = [...prevUserData.addresses];
@@ -44,7 +43,7 @@ export const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{ userData, addAddress, editAddress, deleteAddress }}>
+    <DataContext.Provider value={{ userData, addAddress, editAddress }}>
       {children}
     </DataContext.Provider>
   );

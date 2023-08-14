@@ -1,0 +1,59 @@
+/* ProductDetail.css */
+
+.product-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .see-all-link {
+    margin-top: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .see-all-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Style for the ProductCard component (you can adjust these styles as needed) */
+  .product-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .product-card-title {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+  .product-card-price {
+    font-size: 18px;
+    color: #007bff;
+    margin-top: 5px;
+  }
+  
+  .product-card-description {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  /* Additional styling for hiding description */
+  .product-card-no-description .product-card-description {
+    display: none;
+  }
+  

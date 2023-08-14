@@ -24,6 +24,19 @@ const Login = () => {
     }
   };
 
+  const handleGuestLogin = async () => {
+    const guestEmail = 'adarshbalika@gmail.com';
+    const guestPassword = 'adarshbalika';
+
+    try {
+      await signIn(guestEmail, guestPassword);
+      toast.success('Logged in as a guest!');
+    } catch (error) {
+      console.error('Guest login error:', error);
+      toast.error('Guest login failed. Please try again.', { position: 'top-center' });
+    }
+  };
+
   useEffect(() => {
     if (token === true) {
       navigate('/');
@@ -36,36 +49,41 @@ const Login = () => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSignIn}>
-        <h1>Sign In</h1>
-        <label>
-          Email
-          <input type="text" required />
-        </label>
-        <label className="label-container">
-          Password
-          <div className="password-input">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <i
-              className={`password-toggle ${showPassword ? 'visible' : ''}`}
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? '🙈' : '👁️'}
-            </i>
+      <div className="form-container">
+        <form onSubmit={handleSignIn}>
+          <h1>Sign In</h1>
+          <label>
+            Email
+            <input type="text" required />
+          </label>
+          <label className="label-container">
+            Password
+            <div className="password-input">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <i
+                className={`password-toggle ${showPassword ? 'visible' : ''}`}
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </i>
+            </div>
+          </label>
+          <div className="button-container">
+            <button type="submit">Sign In</button>
+            <button type="button" onClick={handleGuestLogin}>Guest Login</button>
           </div>
-        </label>
-        <div className="button-container">
-          <button type="submit">Sign In</button>
+        </form>
+        <div className="signup-text">
+          <p>
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </p>
         </div>
-      </form>
-      <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </p>
+      </div>
     </div>
   );
 };

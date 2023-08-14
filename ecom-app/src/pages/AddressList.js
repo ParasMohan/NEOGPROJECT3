@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./AddressList.css";
 const AddressList = ({ addresses, onEdit, onDelete, onSelectAddress }) => {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
 
@@ -9,20 +9,21 @@ const AddressList = ({ addresses, onEdit, onDelete, onSelectAddress }) => {
   };
 
   return (
-    <div>
+    <div className="address-list">
       {addresses.map((address, index) => (
-        <div key={index}>
+        <div className="address-item" key={index}>
           <input
+            className="address-radio"
             type="radio"
             name="selectedAddress"
             checked={selectedAddressIndex === index}
             onChange={() => handleSelectAddress(index)}
           />
-          <p>
+          <p className="address-details">
             Street: {address.street}, City: {address.city}, State: {address.state}
           </p>
-          <button onClick={() => onEdit(index)}>Edit</button>
-          <button onClick={() => onDelete(index)}>Delete</button>
+          <button className="address-action-btn" onClick={() => onEdit(index)}>Edit</button>
+          <button className="address-action-btn" onClick={() => onDelete(index)}>Delete</button>
         </div>
       ))}
     </div>

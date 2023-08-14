@@ -20,7 +20,8 @@ import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation"; // Add this import
 import WishList from "./pages/WishList";
 import Home from "./pages/Home";
-
+import Footer from "./components/Footer";
+import { CartContext } from "./context/CartContext";
 export default function App() {
   return (
     <div className="App">
@@ -28,22 +29,35 @@ export default function App() {
       <Routes>
       <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList products={products} />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={
+            <RequiresAuth>
+              <Cart />
+            </RequiresAuth>
+          } />
+
         <Route
           path="/category"
           element={<Category categories={categories} />}
         />
+
         <Route
           path="/category/:categoryName"
           element={<CategoryPage products={products} />}
         />
+
         <Route path="/product/:productId" element={<ProductDetail />} />
 
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path='/mockman' element={<MockAPI />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/userprofile" element={<UserProfile />} />
+
+        <Route path="/userprofile" element={
+           <RequiresAuth>
+             <UserProfile />
+           </RequiresAuth>
+        } />
+
         <Route
           path="/wishlist"
           element={
@@ -66,6 +80,7 @@ export default function App() {
         pauseOnHover
         theme="light"
       />
+      <Footer/>
     </div>
   );
 }

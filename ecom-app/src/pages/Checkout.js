@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,26 +8,10 @@ import "./Checkout.css"; // Import the CSS file
 export default function Checkout() {
   const { cart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
-  const [selectedAddress, setSelectedAddress] = useState("");
-  const { userData } = useContext(DataContext);
-
-  useEffect(() => {
-    if (userData.primaryAddress) {
-      setSelectedAddress(userData.primaryAddress);
-    }
-  }, [userData.primaryAddress]);
-
-  // Update selected address when changed from profile page
-  const handleSelectAddress = (address) => {
-    setSelectedAddress(address.id);
-  };
+  const [selectedAddress, setSelectedAddress] = useState(""); // You can remove the selectedAddress state if not needed
+  // const { userData, editAddress } = useContext(DataContext); // No need for DataContext in this case
 
   const handlePlaceOrder = () => {
-    if (!selectedAddress) {
-      toast.warning("Please select an address before placing an order");
-      return;
-    }
-
     // Perform the order placement logic here
     // You can clear the cart and perform any other necessary actions
     clearCart();
@@ -43,6 +27,8 @@ export default function Checkout() {
   return (
     <div className="checkout-container">
       <h2>Checkout</h2>
+      <p style={{ color: "red" }}>NOTE: Please choose a dummy address to place an order successfully.</p>
+
       <div className="address-section">
         <h3>Select Address</h3>
         {/* Dummy Addresses */}
@@ -52,16 +38,7 @@ export default function Checkout() {
             id="address-1"
             name="address"
             value="address-1"
-            checked={selectedAddress === "address-1"}
-            onChange={() =>
-              handleSelectAddress({
-                id: "address-1",
-                name: "John Doe",
-                postalCode: "12345",
-                state: "Anytown",
-                city: "NY"
-              })
-            }
+            onChange={() => setSelectedAddress("address-1")} // If you still want to capture the selected address ID
           />
           <label htmlFor="address-1">
             <h3>John Doe</h3>
@@ -75,16 +52,7 @@ export default function Checkout() {
             id="address-2"
             name="address"
             value="address-2"
-            checked={selectedAddress === "address-2"}
-            onChange={() =>
-              handleSelectAddress({
-                id: "address-2",
-                name: "Jane Smith",
-                postalCode: "67890",
-                state: "Another Town",
-                city: "CA"
-              })
-            }
+            onChange={() => setSelectedAddress("address-2")} // If you still want to capture the selected address ID
           />
           <label htmlFor="address-2">
             <h3>Jane Smith</h3>
@@ -93,31 +61,13 @@ export default function Checkout() {
           </label>
         </div>
         {/* End of Dummy Addresses */}
-        {userData.addresses.map((address) => (
-          <div className="address-card" key={address.id}>
-            <input
-              type="radio"
-              id={`address-${address.id}`}
-              name="address"
-              value={address.id}
-              checked={selectedAddress === address.id}
-              onChange={() => handleSelectAddress(address)}
-            />
-            <label htmlFor={`address-${address.id}`}>
-              <h3>{address.name}</h3>
-              <p>{address.postalCode}</p>
-              <p>{address.state}</p>
-              <p>{address.city}</p>
-            </label>
-          </div>
-        ))}
       </div>
       <div className="order-summary">
         <h3>Order Summary</h3>
         {cart.map((item) => (
           <div key={item._id} className="order-item">
             <span>{item.title}</span>
-            <span>Quantity: {item.quantity} - Price: {item.price}</span>
+            <span>Total Quantity: {item.quantity} - Price: $ {item.price}</span>
           </div>
         ))}
         <div>Total: ${cartTotal}</div>

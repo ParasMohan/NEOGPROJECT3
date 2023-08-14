@@ -1,69 +1,64 @@
-/* Login.css */
-
-/* Overall layout */
-.container {
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     max-width: 400px;
-    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    border-radius: 5px;
+    background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Form */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
   .label-container {
+    margin-top: 10px;
+  }
+  
+  .password-input {
     display: flex;
     align-items: center;
-    justify-content: space-between;
   }
   
-  label {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #555;
-    flex: 1;
+  .password-toggle {
+    cursor: pointer;
+    margin-left: 5px;
   }
   
-  /* ... (other styles) ... */
-  
-  /* Button container */
   .button-container {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
   }
   
-  /* Link */
-  p a {
-    color: #007bff;
-    text-decoration: none;
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
-  /* Toast container */
-  .Toastify__toast-container {
-    top: 0;
-    right: 0;
+  .signup-text {
+    text-align: center;
+    margin-top: 15px;
   }
   
-  .Toastify__toast--success {
-    background-color: #2ecc71;
-    color: white;
-  }
-  
-  .Toastify__toast--error {
-    background-color: #e74c3c;
-    color: white;
-  }
+  /* ... (other CSS styles) */
   
