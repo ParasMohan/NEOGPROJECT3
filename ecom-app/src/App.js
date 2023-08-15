@@ -11,7 +11,6 @@ import CategoryPage from "./pages/CategoryPage";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup"
-import MockAPI from "./components/Mockman";
 import { RequiresAuth } from "./components/RequiresAuth";
 import UserProfile from "./pages/UserProfile";
 import { ToastContainer } from "react-toastify";
@@ -49,7 +48,6 @@ export default function App() {
 
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
-        <Route path='/mockman' element={<MockAPI />} />
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/userprofile" element={
