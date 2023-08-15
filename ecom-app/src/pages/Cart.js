@@ -15,7 +15,7 @@ export default function Cart() {
     decreaseQuantity,
   } = useContext(CartContext);
   const { addToWishlist } = useContext(WishlistContext);
-  const navigate = useNavigate(); // Updated variable name
+  const Navigate = useNavigate()
 
   const handleRemoveItem = (item) => {
     removeItem(item);
@@ -44,58 +44,40 @@ export default function Cart() {
     if (cart.length === 0) {
       toast.warning("Your cart is empty. You cannot proceed to checkout.");
     } else {
-      navigate("/checkout"); // Updated function call
+      Navigate("/checkout")
     }
   };
-
 
   return (
     <div className="cart-container">
       <h3 className="cart-header">{cart.length} items in your cart</h3>
       {cart.map((item) => (
         <div key={item._id} className="cart-item">
-          <img
-            src={item.thumbnail}
-            alt={item.title}
-            className="cart-item-thumbnail"
-          />
+          <img src={item.thumbnail} alt={item.title} className="cart-item-thumbnail" />
           <div className="cart-item-details">
             <div className="cart-item-title">{item.title}</div>
             <div className="cart-item-quantity">
-              <button
-                className="quantity-button"
-                onClick={() => handleDecreaseQuantity(item)}
-              >
+              <button className="quantity-button" onClick={() => handleDecreaseQuantity(item)}>
                 -
               </button>
               {item.quantity}
-              <button
-                className="quantity-button"
-                onClick={() => handleIncreaseQuantity(item)}
-              >
+              <button className="quantity-button" onClick={() => handleIncreaseQuantity(item)}>
                 +
               </button>
             </div>
             <div className="cart-item-price">Price: $ {item.price}</div>
           </div>
           <div className="cart-item-buttons">
-            <button
-              className="remove-button"
-              onClick={() => handleRemoveItem(item)}
-            >
+            <button className="remove-button" onClick={() => handleRemoveItem(item)}>
               Remove
             </button>
-            <button
-              className="wishlist-button"
-              onClick={() => handleAddToWishlist(item)}
-            >
+            <button className="wishlist-button" onClick={() => handleAddToWishlist(item)}>
               Add to Wishlist
             </button>
           </div>
         </div>
       ))}
-      <div className="cart-total">
-        Total: $
+      <div className="cart-total">Total: $
         {cart.reduce(
           (totalPrice, item) => (totalPrice += item.price * item.quantity),
           0
