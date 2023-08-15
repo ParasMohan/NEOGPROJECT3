@@ -13,7 +13,7 @@ const UserProfile = () => {
   const { userData, addAddress, editAddress, deleteAddress } = useData();
   const [addressFormVisible, setAddressFormVisible] = useState(false);
   const [addressIndexToEdit, setAddressIndexToEdit] = useState(null);
-  const [shownToasts, setShownToasts] = useState([]); // Keep track of shown toast
+  const [shownToasts, setShownToasts] = useState([]); // Keep track of shown toasts
   // const navigate = useNavigate();
 
   const toggleAddressForm = () => {
