@@ -1,45 +1,40 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import axios from "axios";
+
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || false);
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || {}
-  );
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    if (token) {
-      // Save token and user data to localStorage whenever they change
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-    }
-  }, [token, user]);
-
+  const [token, setToken] = useState(false);
+  const [user, setUser] = useState({});
+  const navigate = useNavigate()
+  const location = useLocation()
   const signIn = async (email, password) => {
     try {
       const res = await axios.post("api/auth/login", { email, password });
       const { encodedToken, foundUser } = res.data;
+      localStorage.setItem("token", encodedToken);
+      localStorage.setItem("user", JSON.stringify(foundUser)); // Store user data as a string
       setUser(foundUser);
       setToken(encodedToken);
 
-      if (location?.state?.from?.pathname)
-        navigate(location?.state?.from?.pathname);
-      else navigate("/", { replace: true });
+      if(location?.state?.from?.pathname)
+      navigate(location?.state?.from?.pathname);
+        else navigate("/", { replace: true });
 
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   const signUp = async (userData) => {
     try {
       const res = await axios.post("api/auth/signup", userData);
       const { encodedToken, createdUser } = res.data;
+      localStorage.setItem("token", encodedToken);
+      localStorage.setItem("user", JSON.stringify(createdUser)); // Store user data as a string
       setUser(createdUser);
       setToken(encodedToken);
     } catch (error) {
@@ -52,12 +47,12 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     setUser({});
     setToken(false);
-    navigate("/");
+    navigate('/')
   };
 
   return (
     <AuthContext.Provider
-      value={{ signIn, signUp, signOut, token, setToken, user }}
+      value={{ signIn, signUp, signOut, token,setToken, user }}
     >
       {children}
     </AuthContext.Provider>
