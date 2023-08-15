@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useData } from "../context/DataContext";
 import { useContext } from "react";
 import { AuthContext } from "..";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import AddressList from "./AddressList";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,7 +14,7 @@ const UserProfile = () => {
   const [addressFormVisible, setAddressFormVisible] = useState(false);
   const [addressIndexToEdit, setAddressIndexToEdit] = useState(null);
   const [shownToasts, setShownToasts] = useState([]); // Keep track of shown toasts
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const toggleAddressForm = () => {
     setAddressFormVisible(!addressFormVisible);

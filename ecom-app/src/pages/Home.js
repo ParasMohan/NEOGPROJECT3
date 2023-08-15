@@ -20,7 +20,7 @@ const Home = () => {
         <img
           onClick={() => navigate("/products")}
           src='https://assets.justinmind.com/wp-content/webp-express/webp-images/uploads/2019/08/ecommerce-website-design.png.webp'
-          alt='hero-image'
+          alt='hero'
         />
       </div>
     </div>

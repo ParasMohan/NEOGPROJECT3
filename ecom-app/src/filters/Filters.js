@@ -49,10 +49,10 @@ export function Filter({
     handleSortOrder(order);
   };
 
-  const handleCategoryChange = (category) => {
-    dispatch({ type: "SET_CATEGORY", payload: category });
-    handleCategoryFilter(category);
-  };
+  // const handleCategoryChange = (category) => {
+  //   dispatch({ type: "SET_CATEGORY", payload: category });
+  //   handleCategoryFilter(category);
+  // };
 
   const handleResetFilters = () => {
     dispatch({ type: "RESET_FILTERS" });
@@ -62,7 +62,7 @@ export function Filter({
     handleCategoryFilter(""); // Reset category filter as well
   };
 
-  const { maxPrice, rating, sortOrder, category } = filterState;
+  const { maxPrice, rating, sortOrder } = filterState;
 
   return (
     <div>

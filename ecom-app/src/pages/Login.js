@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Login.css'; // Link the CSS file
 
 const Login = () => {
   const { signIn, token } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,7 +39,7 @@ const Login = () => {
 
   useEffect(() => {
     if (token === true) {
-      navigate('/');
+      // navigate('/');
     }
   }, [token]);
 
