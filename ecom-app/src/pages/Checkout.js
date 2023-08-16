@@ -2,11 +2,13 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./Checkout.css"; // Import the CSS file
+import { useData } from "../context/DataContext";
+import "./Checkout.css";
 
 export default function Checkout() {
   const { cart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
+  const { userData } = useData();
   const [selectedAddress, setSelectedAddress] = useState("");
 
   const handlePlaceOrder = () => {
@@ -31,22 +33,42 @@ export default function Checkout() {
     <div className="checkout-container">
       <h2>Checkout</h2>
       <p style={{ color: "red" }}>
-        NOTE: Please choose a dummy address to place an order successfully.
+        NOTE: Please choose an address to place an order successfully.
       </p>
 
       <div className="address-section">
         <h3>Select Address</h3>
-        {/* Dummy Addresses */}
+        {/* Display user's saved addresses from userData */}
+        {userData.addresses.map((address, index) => (
+          <div key={index} className="address-card">
+            <input
+              type="radio"
+              id={`address-${index}`}
+              name="address"
+              value={`address-${index}`}
+              onChange={() => setSelectedAddress(address)}
+            />
+            <label htmlFor={`address-${index}`}>
+              <h3>{address.fullName}</h3>
+              <p>{address.street}</p>
+              <p>
+                {address.city}, {address.state} {address.postalCode}
+              </p>
+            </label>
+          </div>
+        ))}
+
+        {/* Display hardcoded addresses */}
         <div className="address-card">
           <input
             type="radio"
-            id="address-1"
+            id="hardcoded-address-1"
             name="address"
-            value="address-1"
-            onChange={() => setSelectedAddress("address-1")}
+            value="hardcoded-address-1"
+            onChange={() => setSelectedAddress("Hardcoded Address 1")}
           />
-          <label htmlFor="address-1">
-            <h3>John Doe</h3>
+          <label htmlFor="hardcoded-address-1">
+            <h3>Hardcoded Address 1</h3>
             <p>1234 Elm Street</p>
             <p>Anytown, NY 12345</p>
           </label>
@@ -54,18 +76,18 @@ export default function Checkout() {
         <div className="address-card">
           <input
             type="radio"
-            id="address-2"
+            id="hardcoded-address-2"
             name="address"
-            value="address-2"
-            onChange={() => setSelectedAddress("address-2")}
+            value="hardcoded-address-2"
+            onChange={() => setSelectedAddress("Hardcoded Address 2")}
           />
-          <label htmlFor="address-2">
-            <h3>Jane Smith</h3>
+          <label htmlFor="hardcoded-address-2">
+            <h3>Hardcoded Address 2</h3>
             <p>5678 Oak Avenue</p>
             <p>Another Town, CA 67890</p>
           </label>
         </div>
-        {/* End of Dummy Addresses */}
+        {/* End of hardcoded addresses */}
       </div>
       <div className="order-summary">
         <h3>Order Summary</h3>
