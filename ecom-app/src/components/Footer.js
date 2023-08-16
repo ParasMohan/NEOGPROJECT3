@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p className="footer-text">© {new Date().getFullYear()} TechKart</p>
+        <p className="footer-text">© {new Date().getFullYear()} ShopeeKart</p>
         <div className="social-links">
           {footerLinks.map(link => (
             <a
