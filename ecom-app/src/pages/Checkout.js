@@ -68,7 +68,7 @@ export default function Checkout() {
             onChange={() => setSelectedAddress("Hardcoded Address 1")}
           />
           <label htmlFor="hardcoded-address-1">
-            <h3>Hardcoded Address 1</h3>
+            <h3>Chris Pratt (Dummy 1 )</h3>
             <p>1234 Elm Street</p>
             <p>Anytown, NY 12345</p>
           </label>
@@ -82,7 +82,7 @@ export default function Checkout() {
             onChange={() => setSelectedAddress("Hardcoded Address 2")}
           />
           <label htmlFor="hardcoded-address-2">
-            <h3>Hardcoded Address 2</h3>
+            <h3>John Doe (Dummy 2)</h3>
             <p>5678 Oak Avenue</p>
             <p>Another Town, CA 67890</p>
           </label>
