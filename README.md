@@ -1,7 +1,6 @@
 # Shopeekart
-Ecommerce Web App
 
-FEATURES
+##FEATURES
 
 Home Page
 Product Listing Page
