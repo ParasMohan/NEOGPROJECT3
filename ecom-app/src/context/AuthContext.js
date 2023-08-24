@@ -7,8 +7,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(false);
-  const [user, setUser] = useState({});
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const navigate = useNavigate()
   const location = useLocation()
   const signIn = async (email, password) => {
